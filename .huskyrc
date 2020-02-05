@@ -1,0 +1,5 @@
+{
+  hooks: {
+    "pre-commit": "sh -c 'yarn run lint-staged'"
+  }
+}
