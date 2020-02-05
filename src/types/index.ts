@@ -1,16 +1,18 @@
+export type Id = string | number
+
 interface Company {
   name: string
 }
 
 export interface User {
-  id: number | string
+  id: Id
   name: string
   email: string
   company: Company
 }
 
 export interface Post {
-  id: number | string
+  id: Id
   title: string
 }
 

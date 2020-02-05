@@ -21,6 +21,8 @@ import reducers from './store/reducers'
 import helloSaga from './store/sagas'
 
 import PostList from './components/PostList'
+import PostItem from './components/PostItem'
+
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
@@ -37,7 +39,11 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={() => <Redirect to="/posts" />} />
           <Route exact path="/posts" component={() => <PostList></PostList>} />
-          <Route exact path="/posts/:id" component={() => <div>POST</div>} />
+          <Route
+            exact
+            path="/posts/:id"
+            component={() => <PostItem></PostItem>}
+          />
         </Switch>
       </Router>
     </App>

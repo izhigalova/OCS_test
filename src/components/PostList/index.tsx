@@ -3,12 +3,12 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import { Waypoint } from 'react-waypoint'
-import * as actions from '../../store/actions'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import * as actions from '../../store/actions'
 
 import { PostWithUser } from '../../types'
-
-import { useHistory } from 'react-router-dom'
 
 interface Props {
   fetchPostList: () => void
