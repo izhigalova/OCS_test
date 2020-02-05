@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { SET_DATA_LOADING } from '../actions/actionTypes'
+import { SHOW_SPINNER, HIDE_SPINNER } from '../actions/actionTypes'
 
 interface InitialState {
   dataIsLoading: boolean
@@ -9,14 +9,20 @@ const initialState: InitialState = {
   dataIsLoading: false,
 }
 
-const setDataLoadingCondition = (
-  state: InitialState,
-  { payload }: { payload: boolean },
-) => ({ ...state, dataIsLoading: payload })
+const handleShowSpinner = (state: InitialState) => ({
+  ...state,
+  dataIsLoading: true,
+})
+
+const handleHideSpinner = (state: InitialState) => ({
+  ...state,
+  dataIsLoading: false,
+})
 
 const ui = handleActions(
   {
-    [SET_DATA_LOADING]: setDataLoadingCondition,
+    [SHOW_SPINNER]: handleShowSpinner,
+    [HIDE_SPINNER]: handleHideSpinner,
   },
   initialState,
 )

@@ -32,11 +32,24 @@ interface PostPayload {
   id: Id
 }
 
-function* fetchPostItem({ payload }: { payload: PostPayload }) {
+interface PostAction {
+  type: 'FETCH_POST_ITEM'
+  payload: PostPayload
+}
+
+function* fetchPostItem(action: PostAction) {
   try {
-    const { response: post } = yield call(() => Api.fetchPostItem(payload.id))
+    const { response: post } = yield call(() =>
+      Api.fetchPostItem(action.payload.id),
+    )
     const userId = post.userId
     const { response: user } = yield call(() => Api.fetchUserItem(userId))
+    const { response: comments } = yield call(() =>
+      Api.fetchCommentList(action.payload.id),
+    )
+
+    // fetchCommentList
+    console.log('comments', comments)
 
     yield put({ type: FETCH_POST_ITEM_DONE, payload: { ...post, user } })
   } catch (error) {
@@ -44,7 +57,7 @@ function* fetchPostItem({ payload }: { payload: PostPayload }) {
   }
 }
 
-export default function* bots() {
+export default function* posts() {
   yield takeLatest(FETCH_POST_LIST, fetchPostList)
   yield takeLatest(FETCH_POST_ITEM, fetchPostItem)
 }

@@ -14,8 +14,13 @@ export interface User {
 export interface Post {
   id: Id
   title: string
+  body: string
 }
 
 export interface PostWithUser extends Post {
   user: User
+}
+
+export interface Comment {
+  id: Id
 }

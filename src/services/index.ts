@@ -9,3 +9,5 @@ export const fetchPostItem = (id: Id) =>
   axios.get(`/posts/${id}`).then(onSuccess, onError)
 export const fetchUserItem = (id: Id) =>
   axios.get(`/users/${id}`).then(onSuccess, onError)
+export const fetchCommentList = (postId: Id) =>
+  axios.get(`/posts/${postId}/comments`).then(onSuccess, onError)
