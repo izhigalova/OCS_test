@@ -4,8 +4,19 @@ import { FETCH_POST_LIST, FETCH_POST_LIST_DONE } from '../actions/actionTypes'
 
 function* fetchPostList() {
   try {
-    const { response } = yield call(Api.fetchPostList)
-    yield put({ type: FETCH_POST_LIST_DONE, payload: response })
+    const { response: postList } = yield call(Api.fetchPostList)
+    const { response: userList } = yield call(Api.fetchUserList)
+
+    const usersMap = userList.reduce((acc: any, currentUser: { id: any }) => {
+      return { ...acc, [currentUser.id]: currentUser }
+    }, {})
+
+    const posts = postList.map((post: { userId: string | number }) => ({
+      ...post,
+      user: usersMap[post.userId],
+    }))
+
+    yield put({ type: FETCH_POST_LIST_DONE, payload: posts })
   } catch (error) {
     console.error('fetchPostListSaga', error)
   }

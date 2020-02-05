@@ -1,12 +1,15 @@
 import { handleActions } from 'redux-actions'
+import { FETCH_POST_LIST_DONE } from '../actions/actionTypes'
+import { Post } from '../../types'
 
-const initialState: never[] = []
+const initialState: Post[] = []
 
-const handleFetchPostList = (state: any, { payload }: any) => payload
+const handleFetchPostList = (state: Post[], { payload }: { payload: Post[] }) =>
+  payload
 
 const postList = handleActions(
   {
-    ['FETCH_POST_LIST_DONE']: handleFetchPostList,
+    [FETCH_POST_LIST_DONE]: handleFetchPostList,
   },
   initialState,
 )
