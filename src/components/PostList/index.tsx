@@ -36,9 +36,6 @@ const PostList = (props: Props) => {
 
   if (users != null) {
     const postsWithUser: PostWithUser[] = props.postList.map((post: Post) => {
-      if (users[post.userId] == null) {
-        throw new Error(`fafajs`)
-      }
       return {
         ...post,
         user: users[post.userId],
