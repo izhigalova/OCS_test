@@ -59,7 +59,7 @@ const PostList = (props: Props) => {
               }}
             >
               <ListItemText
-                primary={post.id + ' ' + post.title}
+                primary={`${post.id} ${post.title}`}
                 secondary={`author: ${post.user.name}, company: ${post.user.company.name}`}
               />
             </ListItem>
