@@ -12,6 +12,7 @@ export interface User {
 }
 
 export interface Post {
+  userId: Id
   id: Id
   title: string
   body: string
@@ -23,4 +24,16 @@ export interface PostWithUser extends Post {
 
 export interface Comment {
   id: Id
+  name: string
+  email: string
+  body: string
+}
+
+export interface UiState {
+  spinnerIsShown: boolean
+  preloaderIsShown: boolean
+}
+
+export interface UsersState {
+  [key: string]: User
 }
